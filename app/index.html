@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/jquery-ui.min.css"/>
     <link rel="stylesheet" href="css/animate.css"/>
     <link rel="stylesheet" href="css/app.css"/>
+    <link rel="stylesheet" href="css/snap.css"/>
     <link rel="stylesheet" href="css/custom.css"/>
     <link rel="stylesheet" href="css/breakpoint/app.css" media="screen"/>
     <link rel="stylesheet" href="css/breakpoint/custom-large.css" media="screen"/>
@@ -26,27 +27,72 @@
         <login />
     </section>
     <section ng-show="Four51User.isAuthenticated()" id="content">
-        <section class="hidden-print">
-            <navigation />
-        </section>
-        <section class="hidden-print">
-            <branding />
-        </section>
-        <section class="container-content">
-            <div ng-view autoscroll />
-        </section>
-        <section ng-controller="ErrorCtrl">
-            <ng-include src="template.url" />
-        </section>
-        <br/>
-        <br/>
-        <div ng-if="!user.Permissions.contains('UnBrandedSite')" style="text-align:right; padding:6px 25px 3px 0; font-size:9pt; font-family:Tahoma,Verdana,Arial;">
-            <div>
-                <div><b>Powered by <a href="http://www.four51.com/public/index.php/help" target="_new">Four51°</a></b></div>
-                <div>Copyright © 2013 Four51 Inc. <br>All Rights Reserved.</div>
-                <div ng-if="!(user.Permissions.contains('HideTerms'))"><a href="#/conditions">Conditions of Use</a></div>
+
+        <snap-drawers>
+            <snap-drawer>
+                <h4 class="text-center">LEFT DRAWER HEADER</h4>
+                <div class="snap-drawer-list">
+                    <ul>
+                        <li><a href="#">Link 1</a>
+                            <ul>
+                                <li>Sublink 1</li>
+                                <li>Sublink 2</li>
+                            </ul></li>
+                        <li><a href="#">Link 2</a></li>
+                        <li><a href="#">Link 3</a></li>
+                        <li><a href="#">Link 4</a></li>
+                        <li><a href="#">Link 5</a></li>
+                    </ul>
+                </div>
+            </snap-drawer>
+            <div snap-drawer="right">
+                <h4 class="text-center">RIGHT DRAWER HEADER</h4>
+                <div class="snap-drawer-list">
+                    <ul>
+                        <li><a href="#">Link 1</a>
+                            <ul>
+                                <li>Sublink 1</li>
+                                <li>Sublink 2</li>
+                            </ul></li>
+                        <li><a href="#">Link 2</a></li>
+                        <li><a href="#">Link 3</a></li>
+                        <li><a href="#">Link 4</a></li>
+                        <li><a href="#">Link 5</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
+        </snap-drawers>
+
+
+        <snap-content>
+
+            <section class="hidden-print">
+                <navigation />
+            </section>
+            <section class="hidden-print">
+                <branding />
+            </section>
+
+            <div id="visibleArea" style="overflow-y:scroll;">
+                <div style="padding-bottom:100px;">
+                    <section class="container-content">
+                        <div ng-view autoscroll />
+                    </section>
+                    <section ng-controller="ErrorCtrl">
+                        <ng-include src="template.url" />
+                    </section>
+                    <div ng-if="!user.Permissions.contains('UnBrandedSite')" style="text-align:right; padding:6px 25px 3px 0; font-size:9pt; font-family:Tahoma,Verdana,Arial;">
+                        <div>
+                            <div><b>Powered by <a href="http://www.four51.com/public/index.php/help" target="_new">Four51°</a></b></div>
+                            <div>Copyright © 2013 Four51 Inc. <br>All Rights Reserved.</div>
+                            <div ng-if="!(user.Permissions.contains('HideTerms'))"><a href="#/conditions">Conditions of Use</a></div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </snap-content>
     </section>
 </section>
 
@@ -57,6 +103,7 @@
     <script src="lib/jquery-2.0.0.js"></script>
     <script src="lib/jquery-ui.min.js"></script>
     <script src="lib/store.js"></script>
+    <script src="lib/angular/snap.js"></script>
     <script src="lib/angular/angular.1.2.0.js"></script>
     <script src="lib/angular/angular-sanitize.js"></script>
     <script src="lib/angular/angular-cookies.js"></script>
@@ -65,6 +112,25 @@
     <script src="lib/angular/angular-route.js"></script>
     <script src="lib/angular/angular-touch.js"></script>
     <script src="lib/angular/angular-loader.js"></script>
+    <script src="lib/angular/angular-snap.js"></script>
+
+    <script src="lib/angular/gestures.js"></script>
+    <script src="lib/angular/hammer/core.js"></script>
+    <script src="lib/angular/hammer/detection.js"></script>
+    <script src="lib/angular/hammer/event.js"></script>
+    <script src="lib/angular/hammer/instance.js"></script>
+    <script src="lib/angular/hammer/intro.js"></script>
+    <script src="lib/angular/hammer/outro.js"></script>
+    <script src="lib/angular/hammer/pointerevent.js"></script>
+    <script src="lib/angular/hammer/setup.js"></script>
+    <script src="lib/angular/hammer/utils.js"></script>
+    <script src="lib/angular/hammer/gestures/drag.js"></script>
+    <script src="lib/angular/hammer/gestures/hold.js"></script>
+    <script src="lib/angular/hammer/gestures/release.js"></script>
+    <script src="lib/angular/hammer/gestures/swipe.js"></script>
+    <script src="lib/angular/hammer/gestures/tap.js"></script>
+    <script src="lib/angular/hammer/gestures/touch.js"></script>
+    <script src="lib/angular/hammer/gestures/transform.js"></script>
 
     <script src="lib/angular/ui-bootstrap-0.2.0.js"></script>
     <script src="lib/angular/ui-date.js"></script>
@@ -120,6 +186,8 @@
     <script src="js/services/shipperService.js"></script>
     <script src="js/services/couponService.js"></script>
     <script src="js/services/resourceService.js"></script>
+    <script src="js/services/snap-remote.js"></script>
+    <script src="js/services/resizeService.js"></script>
 
     <script src="js/factories/fileReader.js"></script>
 
@@ -139,6 +207,13 @@
     <script src="js/directives/fileinput.js"></script>
     <script src="js/directives/shortCartView.js"></script>
     <script src="js/directives/loadingindicator.js"></script>
+
+    <script src="js/directives/angular-snap/snap-toggle.js"></script>
+    <script src="js/directives/angular-snap/snap-drawers.js"></script>
+    <script src="js/directives/angular-snap/snap-dragger.js"></script>
+    <script src="js/directives/angular-snap/snap-content.js"></script>
+    <script src="js/directives/angular-snap/snap-close.js"></script>
+    <script src="js/directives/angular-snap/snap-drawer.js"></script>
 
     <script src="js/directives/printing.js"></script>
 

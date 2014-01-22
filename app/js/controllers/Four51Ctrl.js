@@ -1,4 +1,11 @@
-four51.app.controller('Four51Ctrl', function ($scope, $route, $routeParams, $location, $451, User, Order, Security, OrderConfig, Category, SpendingAccount, AppConst) {
+four51.app.controller('Four51Ctrl', function ($rootScope, $scope, $route, $routeParams, $location, $451, User, Order, Security, OrderConfig, Category, SpendingAccount, AppConst, Resize) {
+    Resize.set();
+
+    $rootScope.$on('$locationChangeSuccess', function(newValue, oldValue){
+        if (newValue != oldValue) {
+            Resize.set();
+        }
+    });
     $scope.AppConst = AppConst;
 	$scope.scroll = 0;
     //$scope.appname = $451.appname; not needed?

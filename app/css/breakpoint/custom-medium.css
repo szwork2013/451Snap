@@ -1,6 +1,11 @@
 /* x-md */
 @media (min-width: 980px) and (max-width: 1199px) {
-
-
-
+    body.snapjs-left .snap-content{
+        margin-right:266px;
+        transition:margin 300ms;
+    }
+    body.snapjs-right .snap-content{
+        margin-left:266px;
+        transition:margin 300ms;
+    }
 }
